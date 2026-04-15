@@ -432,8 +432,32 @@ td { padding: 15px; border-bottom: 1px solid var(--color-border); background: va
 /* Responsive */
 @media (max-width: 992px) {
   .footer__grid { grid-template-columns: 1fr 1fr; }
-  .nav { display: none; }
+  .nav { 
+    display: none; 
+    flex-direction: column;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: var(--color-surface);
+    padding: 30px 20px;
+    border-bottom: 2px solid var(--color-primary);
+    z-index: 999;
+    box-shadow: var(--shadow-lg);
+  }
+  .nav.active { 
+    display: flex; 
+    animation: slideDown 0.3s ease-out;
+  }
   .burger { display: flex; }
+  .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 @media (max-width: 768px) {
@@ -444,6 +468,22 @@ td { padding: 15px; border-bottom: 1px solid var(--color-border); background: va
   
   .review-hero__container { flex-direction: column; text-align: center; }
   .review-hero__logo { margin: 0 auto; }
+
+  /* Mobile Vitrina (Showcase) Enhancements */
+  .card__header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  .card__logo {
+    margin: 0 auto;
+  }
+  .card__rating {
+    justify-content: center;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
 }
 
 /* Review Hero Classes */
@@ -473,4 +513,43 @@ td { padding: 15px; border-bottom: 1px solid var(--color-border); background: va
 
 .review-hero__content {
   flex: 1;
+}
+
+/* ============================================
+   BACK TO TOP BUTTON
+   ============================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+  box-shadow: var(--glow-primary);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-primary);
+  box-shadow: 0 0 25px var(--color-primary-glow);
+  transform: translateY(-5px);
 }

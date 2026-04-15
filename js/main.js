@@ -12,6 +12,7 @@ class SiteUI {
         this.initMobileMenu();
         this.initSmoothScroll();
         this.initFAQ();
+        this.initBackToTop();
     }
 
     initMobileMenu() {
@@ -47,6 +48,26 @@ class SiteUI {
                 const item = q.parentElement;
                 item.classList.toggle('active');
             }
+        });
+    }
+
+    initBackToTop() {
+        const btn = document.createElement('button');
+        btn.innerHTML = '↑';
+        btn.className = 'back-to-top';
+        btn.setAttribute('aria-label', 'Back to Top');
+        document.body.appendChild(btn);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 }
