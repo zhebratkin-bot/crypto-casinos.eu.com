@@ -329,12 +329,18 @@ img { max-width: 100%; height: auto; display: block; }
 .toc a { font-size: 0.95rem; color: var(--color-text-muted); }
 .toc a:hover { color: var(--color-primary); }
 
+.table-container {
+  overflow-x: auto;
+  margin: 30px 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 30px 0;
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  margin: 0;
 }
 
 th { background: var(--color-surface-soft); text-align: left; padding: 15px; font-weight: 600; }
@@ -553,3 +559,45 @@ td { padding: 15px; border-bottom: 1px solid var(--color-border); background: va
   box-shadow: 0 0 25px var(--color-primary-glow);
   transform: translateY(-5px);
 }
+
+/* Gambling Warning Bar */
+.gambling-warning {
+  background: #101524;
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.gambling-warning p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gambling-warning strong {
+  color: var(--color-accent);
+}
+
+.gambling-warning a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.gambling-warning a:hover {
+  color: var(--color-secondary);
+}
+
+@media (max-width: 768px) {
+  .gambling-warning {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .gambling-warning p {
+    justify-content: center;
+  }
+}
+
